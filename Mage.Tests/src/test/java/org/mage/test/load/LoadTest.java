@@ -11,6 +11,7 @@ import mage.remote.Connection;
 import mage.remote.MageRemoteException;
 import mage.remote.Session;
 import mage.remote.SessionImpl;
+import mage.remote.traffic.ZipRatio;
 import mage.util.RandomUtil;
 import mage.view.*;
 import org.apache.log4j.Logger;
@@ -143,7 +144,7 @@ public class LoadTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void test_TwoUsersPlayGameUntilEnd() {
 
         // monitor other players
@@ -267,15 +268,15 @@ public class LoadTest {
     @Test
     @Ignore
     public void test_TwoAIPlayGame_One() {
-        playTwoAIGame("Single AI game", "GR", "GRN");
+        playTwoAIGame("Single AI game", "GR", "M21");
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void test_TwoAIPlayGame_Multiple() {
 
         int singleGameSID = 0; // for one game test with same deck
-        int gamesAmount = 1000; // multiple run of one game test
+        int gamesAmount = 10; // multiple run of one game test
 
         // save random seeds for repeated results (in decks generating)
         List<Integer> seedsList = new ArrayList<>();
@@ -293,7 +294,8 @@ public class LoadTest {
             long randomSeed = seedsList.get(i);
             logger.info("Game " + (i + 1) + " of " + seedsList.size() + ", RANDOM seed: " + randomSeed);
             RandomUtil.setSeed(randomSeed);
-            playTwoAIGame("AI game #" + (i + 1), "WGUBR", "ELD");
+            //playTwoAIGame("AI game #" + (i + 1), "WGUBR", "ELD");
+            playTwoAIGame("AI game #" + (i + 1), "WG", "ELD");
         }
     }
 
@@ -380,10 +382,10 @@ public class LoadTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void test_MultipleGames() {
         // multiple games until finish
-        final int MAX_GAMES = 50; // games to run
+        final int MAX_GAMES = 2; // games to run
         final boolean START_GAMES_AT_ONCE = true; // set true to run ALL games parallel (e.g. test max parallel limit)
 
         Instant startTime = Instant.now();
@@ -395,8 +397,8 @@ public class LoadTest {
             LoadGame game = new LoadGame(
                     "game" + i,
                     "game" + i,
-                    DeckTestUtils.buildRandomDeckAndInitCards("GR", true, ""),
-                    DeckTestUtils.buildRandomDeckAndInitCards("GR", true, "")
+                    DeckTestUtils.buildRandomDeckAndInitCards("GR", false, "M21"),
+                    DeckTestUtils.buildRandomDeckAndInitCards("GR", false, "M21")
             );
             gamesList.add(game);
 

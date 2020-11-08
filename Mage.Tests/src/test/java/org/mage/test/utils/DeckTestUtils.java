@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class DeckTestUtils {
 
-    private static final int DECK_SIZE = 40;
+    private static final int DECK_SIZE = 60;
 
     public static Deck buildRandomDeck(String colors, boolean onlyBasicLands) {
         return buildRandomDeck(colors, onlyBasicLands, "");
