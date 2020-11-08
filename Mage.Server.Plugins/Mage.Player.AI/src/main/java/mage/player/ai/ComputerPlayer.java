@@ -2053,7 +2053,7 @@ public class ComputerPlayer extends PlayerImpl implements Player {
         // top 23 cards plus basic lands until 40 deck size
         Deck deck = new Deck();
         final int DECK_SIZE = deckMinSize != 0 ? deckMinSize : 40;
-        final int DECK_CARDS_COUNT = Math.floorDiv(deckMinSize * 23, 40); // 23 from 40
+        final int DECK_CARDS_COUNT = Math.floorDiv(deckMinSize * 34, DECK_SIZE); // 23 from 40
         final int DECK_LANDS_COUNT = DECK_SIZE - DECK_CARDS_COUNT;
 
         // sort card pool by top score
